@@ -1,8 +1,15 @@
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './components/Login';
+import Browse from './components/Browse';
 
 function App() {
   return (
-    <h1 className='text-xl font-bold text-red-800'>Namaste Everyone!</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login/>}/>
+        <Route path="/browse" element={<Browse/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
