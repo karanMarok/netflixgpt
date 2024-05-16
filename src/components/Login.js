@@ -9,8 +9,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { addUser, removeUser } from "../utils/userSlice";
+import { LOGO_TWO } from "../utils/constants";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
@@ -24,21 +23,6 @@ const Login = () => {
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in
-        const {uid, email, displayName} = user;
-        dispatch(addUser({uid: uid, email: email, displayName: displayName}));
-      } else {
-        // User is signed out
-        dispatch(removeUser);
-      }
-    });
-  }, [])
 
   const handleButtonClick = (e) => {
     e.preventDefault();
@@ -93,7 +77,7 @@ const Login = () => {
       <Header />
       <div className="absolute">
         <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/ff5587c5-1052-47cf-974b-a97e3b4f0656/d6793620-d594-46b8-8190-bb0ff82ad906/AU-en-20240506-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+          src={LOGO_TWO}
           alt=""
         />
       </div>
